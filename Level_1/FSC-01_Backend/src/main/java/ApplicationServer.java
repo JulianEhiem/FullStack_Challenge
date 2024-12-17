@@ -11,22 +11,22 @@ import java.util.Map;
 
 public class ApplicationServer {
     public static void main(String[] args) throws IOException {
+        int port = 8000;
 
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
         server.createContext("/", new postsHandler());
 
         server.setExecutor(null);
         server.start();
 
-        System.out.println("Server is running on port 8000");
+        System.out.println("Server is running on port " + port);
     }
 
     public static class postsHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
             String response = generateResponse();
-            System.out.println(response);
             exchange.sendResponseHeaders(200, response.length());
             OutputStream outStream = exchange.getResponseBody();
             outStream.write(response.getBytes());
@@ -46,7 +46,6 @@ public class ApplicationServer {
             }catch (Exception e) {
                 e.printStackTrace();
             }
-//            return "This is a response";
             return jsonResponse;
         }
     }
