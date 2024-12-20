@@ -14,8 +14,8 @@ function App() {
                 console.log(response);
             }
 
-            const json = response.json();
-            console.log(json);
+            // const json = response.;
+            console.log(response);
 
         }
         catch(error){

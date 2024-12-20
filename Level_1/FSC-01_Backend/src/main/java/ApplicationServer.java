@@ -27,6 +27,11 @@ public class ApplicationServer {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
             String response = generateResponse();
+            exchange.getResponseHeaders().add("Content-Type", "application/json");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Credentials", "true");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS,HEAD");
             exchange.sendResponseHeaders(200, response.length());
             OutputStream outStream = exchange.getResponseBody();
             outStream.write(response.getBytes());
