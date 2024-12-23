@@ -1,0 +1,32 @@
+[
+    {
+      "id": 1,
+      "item_type": "shoes",
+      "brand": "Taylor",
+      "color": "brown",
+      "size": 7,
+      "price": 58.00,
+      "quantity": 89,
+      "item_img_id": "abc"
+    },
+    {
+      "id": 2,
+      "item_type": "shoes",
+      "brand": "Nike",
+      "color": "blue",
+      "size": 7.5,
+      "price": 79.99,
+      "quantity": 4,
+      "item_img_id": "def"
+    },
+    {
+      "id": 3,
+      "item_type": "shoes",
+      "brand": "Adidas",
+      "color": "white",
+      "size": 9,
+      "price": 39.99,
+      "quantity": 17,
+      "item_img_id": "ghi"
+    }
+  ]

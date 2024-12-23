@@ -1,3 +1,4 @@
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -12,6 +13,9 @@ import static org.mockito.Mockito.*;
 
 public class ApplicationServerTest {
 
+//    @Test
+//    @DisplayName("")
+
     @Test
     @DisplayName("Verify postsHandler sends 200 status and correct response body")
     public void testPostsHandler() throws IOException {
@@ -19,8 +23,10 @@ public class ApplicationServerTest {
 
         HttpExchange exchange = Mockito.mock(HttpExchange.class);
         OutputStream mockOutputStream = new ByteArrayOutputStream();
+        Headers mockHeader = new Headers();
 
         when(exchange.getResponseBody()).thenReturn(mockOutputStream);
+        when(exchange.getResponseHeaders()).thenReturn(mockHeader);
 
         handler.handle(exchange);
 

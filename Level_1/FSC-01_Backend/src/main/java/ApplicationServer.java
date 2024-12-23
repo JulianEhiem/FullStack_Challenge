@@ -1,12 +1,17 @@
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import data.Product;
+import data.Products;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ApplicationServer {
@@ -39,18 +44,15 @@ public class ApplicationServer {
         }
 
         public String generateResponse() {
-            Map<String, Object> responseMap = new HashMap<>();
-            responseMap.put("message", "Hello World!");
-            responseMap.put("status", "success");
             String jsonResponse = "";
-
             try{
                 ObjectMapper objectMapper = new ObjectMapper();
-                jsonResponse = objectMapper.writeValueAsString(responseMap);
-
+                List<Product> mockProduct = objectMapper.readValue(new File("src/main/java/data/mockData.json"), objectMapper.getTypeFactory().constructCollectionType(List.class, Product.class));
+                jsonResponse = objectMapper.writeValueAsString(mockProduct);
             }catch (Exception e) {
                 e.printStackTrace();
             }
+//            System.out.println(jsonResponse);
             return jsonResponse;
         }
     }
