@@ -1,33 +1,37 @@
 import './App.css'
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
-// const baseURL = import.meta.env.VITE_API_BASE_URL;
-const baseURL = "http://localhost:8000/";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 function App() {
+    const [products, setProducts] = useState([]);
 
     useEffect( () => {
-        try{
-            const response =  fetch(baseURL);
-            if(!response.ok){
-                // throw new Error(response.statusText);
-                console.log(response);
+        const getData = async () => {
+            try{
+                const response = await fetch(baseURL);
+                if(!response.ok){
+                    throw new Error(response.statusText);
+                }
+
+                const data = await response.json();
+                setProducts(data);
+                console.log(data)
             }
-
-            // const json = response.;
-            console.log(response);
-
-        }
-        catch(error){
-            console.error(error);
-            console.log(error.message);
-        }
-
+            catch(error){
+                console.error(error);
+            }
+        }; getData();
     }, [])
 
   return (
     <>
-        <div>Hello world</div>
+        <div>List of data:</div>
+        <ul>
+            {products && products.map((product) => (
+                <li key={product.id}>{product.brand}</li>
+            ))}
+        </ul>
     </>
   )
 }
