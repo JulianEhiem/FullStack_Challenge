@@ -3,18 +3,13 @@ import com.sun.net.httpserver.HttpExchange;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.mockito.Mockito;
+import java.io.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class ApplicationServerTest {
-
-//    @Test
-//    @DisplayName("")
 
     @Test
     @DisplayName("Verify postsHandler sends 200 status and correct response body")
