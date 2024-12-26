@@ -41,7 +41,8 @@ public class ApplicationServer {
 
         public String generateResponse() {
             String jsonResponse = "";
-            String path = "src/main/java/data/mockData.json";
+//            String path = "src/main/java/data/mockData.json";
+            String path = "src/main/java/data/moreMockData.json";
             try{
                 ObjectMapper objectMapper = new ObjectMapper();
                 List<Product> mockProduct = objectMapper.readValue(new File(path), objectMapper.getTypeFactory().constructCollectionType(List.class, Product.class));
