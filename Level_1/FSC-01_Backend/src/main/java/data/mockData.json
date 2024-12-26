@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "item_type": "boots",
+      "brand": "Cestfini",
+      "name": "Wing Tip Classic",
+      "color": "black",
+      "size": 7,
+      "price": 58.00,
+      "quantity": 89,
+      "imageId": "product_black_shoe_1",
+      "tag": "New Arrival"
+    },
+    {
+      "id": 2,
+      "item_type": "shoes",
+      "brand": "Suave",
+      "name": "Rodeo Slims",
+      "color": "black",
+      "size": 7.5,
+      "price": 79.99,
+      "quantity": 4,
+      "imageId": "product_black_shoe_1",
+      "tag": "New Arrival"
+    },
+    {
+      "id": 3,
+      "item_type": "shoes",
+      "brand": "Gimchi",
+      "name": "Sacrans",
+      "color": "white",
+      "size": 9,
+      "price": 39.99,
+      "quantity": 17,
+      "imageId": "product_black_shoe_1",
+      "tag": "New Arrival"
+    }
+  ]
