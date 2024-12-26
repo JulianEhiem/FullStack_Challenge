@@ -22,10 +22,12 @@ public class Product {
     public int id;
     public String item_type;
     public String brand;
+    public String name;
     public String color;
     public float size;
     public float price;
     public int quantity;
-    String item_img_i;
+    public String imageId;
+    public String tag;
     public Product() {};
 }

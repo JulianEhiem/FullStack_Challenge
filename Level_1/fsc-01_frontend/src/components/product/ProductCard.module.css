@@ -1,0 +1,96 @@
+.card{
+    width: 270px;
+}
+.productImage{
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    background-color: #e8dcd2;
+    position: relative;
+    overflow: hidden;
+
+}
+.productImage > img {
+    width: 270px;
+    min-height: 300px;
+    border-radius: 16px;
+}
+.productTag{
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.productDescription{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 14px 2px;
+}
+.productBrand{
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    color:#939aa8;
+}
+.productName{
+    margin: 0;
+    font-size: 20px;
+    font-kerning: none;
+}
+.productPrice{
+    margin: 0;
+    font-size: 20px;
+    font-weight: lighter;
+    color: #4e9bfe;
+}
+.productStock{
+    margin: 0;
+    font-size: 14px;
+    font-weight: lighter;
+    color: #fa7070;
+}
+.descriptionRows{
+    display: flex;
+    justify-content: space-between;
+    max-height: 45px;
+}
+.descriptionRow1{
+
+}
+
+/*====================== ProductTagPill =================================*/
+.pill{
+    padding: 2px 10px 2px 25px;
+    background-color: #42c3d0;
+    width: fit-content;
+    border-radius: 5px;
+    color: #fff;
+    position: relative;
+}
+.pill > p::before {
+    position: absolute;
+    top: 10px;
+    left: 9px;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 6px;
+    height: 6px;
+    content:'';
+}
+.pill > p {
+    margin: 3px 0;
+    font-size: 12px;
+}
+
+/*====================== ProductFaveButton =================================*/
+.faveButton{
+    border: none;
+    background-color: unset;
+    color:#939aa8;
+    cursor: pointer;
+}
+.faveButton > img {
+    width: 26px;
+    height: 26px;
+}
