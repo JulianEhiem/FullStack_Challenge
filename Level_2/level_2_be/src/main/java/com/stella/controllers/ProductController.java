@@ -15,14 +15,14 @@ public class ProductController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        String response = generateResponse(path);
+        String response = generateResponseFrom(path);
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
     }
 
-    public static String generateResponse(String path){
+    public static String generateResponseFrom(String path){
         Path filePath = Path.of(path);
         StringBuilder sb = new StringBuilder();
 

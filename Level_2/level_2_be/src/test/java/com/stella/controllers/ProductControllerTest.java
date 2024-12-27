@@ -33,6 +33,7 @@ class ProductControllerTest {
     @Test
     @DisplayName("Should generate the expected response when given a path to a response file")
     void generateResponse() {
-        assertEquals(message, ProductController.generateResponse(path.toString()));
+        String resolvedPath = path.toString();
+        assertEquals(message, ProductController.generateResponseFrom(resolvedPath));
     }
 }
