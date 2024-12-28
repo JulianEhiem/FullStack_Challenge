@@ -42,7 +42,7 @@
     margin: 0;
     font-size: 20px;
     font-weight: lighter;
-    color: #4e9bfe;
+    color: #42c3d0;
 }
 .productStock{
     margin: 0;
@@ -56,3 +56,52 @@
     max-height: 45px;
 }
 
+/*=============== horizontal card ======================*/
+.horizontalCard{
+    display: flex;
+    width: 550px;
+    height: fit-content;
+    justify-content: space-between;
+    gap: 14px;
+}
+.horizontalProductImage{
+    width: 320px;
+    height: 320px;
+    border-radius: 16px;
+    background-color: #e8dcd2;
+    position: relative;
+    overflow: hidden;
+}
+.horizontalProductImage > img {
+    width: 320px;
+    border-radius: 16px;
+}
+.horizontalProductTag{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+.emptyBox{
+    content: '';
+    background-color: rgba(66, 195, 208, 0.12);
+    border-radius: 5px;
+    width: 90px;
+    height: 31px;
+}
+.horizontalProductDescription{
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    gap: 24px;
+}
+.horizontalProductStock{
+    justify-self: flex-end;
+    margin: 0;
+    font-size: 14px;
+    font-weight: lighter;
+    color: #fa7070;
+}
+.horizontalProductName{
+    margin: 0;
+    font-size: 28px;
+}
