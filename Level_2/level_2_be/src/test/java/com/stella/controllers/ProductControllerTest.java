@@ -16,7 +16,19 @@ class ProductControllerTest {
 
     static Path path;
     static File file;
-    static String message = "Hello Kazakhstan!";
+    static String message = "[" +
+            "{" +
+            "\"id\":1," +
+            "\"item_type\":\"boot\"," +
+            "\"brand\":\"Bruno Marc\"," +
+            "\"name\":\"Chelsea Highs\"," +
+            "\"color\":\"Khaki\"," +
+            "\"size\":7.5," +
+            "\"price\":197.61," +
+            "\"quantity\":35," +
+            "\"imageId\":\"product_brown_shoe_1\"," +
+            "\"tag\":\"New Arrival\"" +
+            "}]";
 
     @TempDir
     static Path tempDir;
