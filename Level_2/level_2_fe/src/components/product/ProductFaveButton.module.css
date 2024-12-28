@@ -1,0 +1,10 @@
+.faveButton{
+    border: none;
+    background-color: unset;
+    color:#939aa8;
+    cursor: pointer;
+}
+.faveButton > img {
+    width: 26px;
+    height: 26px;
+}
