@@ -10,3 +10,8 @@ export interface ProductType {
     imageId: string;
     tag?: string;
 }
+
+export enum viewTypes {
+    R = "rowView",
+    G = "gridView",
+}

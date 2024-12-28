@@ -1,32 +1,33 @@
 import styles from "./ToggleView.module.css"
-import {useState} from "react";
 import inactiveRow from "../../assets/rows_icon.svg"
 import activeRow from "../../assets/rows_icon_active.svg"
 import activeGrid from "../../assets/grid_icon_active.svg"
 import inactiveGrid from "../../assets/grid_icon_inactive.svg"
+import {viewTypes} from "../../types.ts";
 
-enum viewTypes {
-    R = "rowView",
-    G = "gridView",
+interface toggleViewTypes {
+    toggleState: viewTypes;
+    setGrid: () => void;
+    setRow: () => void;
+    hide?: boolean
 }
 
-const ToggleView = () => {
-    const [selection, setSelection] = useState<viewTypes>(viewTypes.G);
+const ToggleView = ({toggleState = viewTypes.G, setGrid, setRow, hide}: toggleViewTypes) => {
 
     return (
         <>
-            <div className={styles.toggleContainer}>
+            <div className={styles.toggleContainer} style={{display: `${hide ? 'none' : 'flex'}`}}>
                 <div
                     role="button"
-                    className={`${styles.toggleBtn} ${selection == viewTypes.R ? styles.active : ''}`}
-                    onClick={() => setSelection(viewTypes.R)}>
-                    <img src={selection == viewTypes.R ? activeRow : inactiveRow} alt="row icon"/>
+                    className={`${styles.toggleBtn} ${toggleState == viewTypes.R ? styles.active : ''}`}
+                    onClick={setRow}>
+                    <img src={toggleState == viewTypes.R ? activeRow : inactiveRow} alt="row icon"/>
                 </div>
                 <div
                     role="button"
-                    className={`${styles.toggleBtn} ${selection == viewTypes.G ? styles.active : ''}`}
-                    onClick={() => setSelection(viewTypes.G)}>
-                    <img src={selection == viewTypes.G ? activeGrid : inactiveGrid} alt="grid icon"/>
+                    className={`${styles.toggleBtn} ${toggleState == viewTypes.G ? styles.active : ''}`}
+                    onClick={setGrid}>
+                    <img src={toggleState == viewTypes.G ? activeGrid : inactiveGrid} alt="grid icon"/>
                 </div>
             </div>
         </>
