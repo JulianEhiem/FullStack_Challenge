@@ -71,7 +71,7 @@ export const ProductCard = ({ product, horizontal }: ProductCardProps ) => {
                         </div>
 
                         <div className={`${styles.descriptionRows} ${styles.descriptionRow3} `}>
-                            <h4 className={styles.productPrice}>${price || '40.00'}</h4>
+                            <h4 className={styles.productPrice}>{formatCurrencyForDisplay(price)}</h4>
                             <h4 className={styles.productStock}>{quantity || 3} items left!</h4>
                         </div>
                     </div>

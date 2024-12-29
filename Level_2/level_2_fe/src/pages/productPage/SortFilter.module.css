@@ -1,0 +1,18 @@
+.sortButton {
+    background-color: transparent;
+    display: flex;
+    border: none;
+    cursor: pointer;
+    width: 230px;
+    padding: 3px 10px;
+}
+.buttonContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+
+}
+.btnText{
+    color:#bdbdbd;
+}

@@ -23,6 +23,8 @@ class ProductControllerTest {
             "\"brand\":\"Bruno Marc\"," +
             "\"name\":\"Chelsea Highs\"," +
             "\"color\":\"Khaki\"," +
+            "\"avg_review\":0.0," +
+            "\"avg_monthly_sales\":0.0," +
             "\"size\":7.5," +
             "\"price\":197.61," +
             "\"quantity\":35," +

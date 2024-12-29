@@ -154,7 +154,7 @@
   "quantity": 22,
   "imageId": "product_black_shoe_2",
   "tag": "New Arrival"
-}, {
+},{
   "id": 13,
   "item_type": "shoe",
   "brand": "Johnston & Murphy",
@@ -193,20 +193,21 @@
   "quantity": 15,
   "imageId": "product_brown_shoe_1",
   "tag": "New Arrival"
-}, {
-  "id": 16,
-  "item_type": "shoe",
-  "brand": "Magnanni",
-  "name": "Dexter Wingtip",
-  "color": "Grey",
-  "avg_review": 4.25,
-  "avg_monthly_sales": 12.8,
-  "size": 9.5,
-  "price": 72.51,
-  "quantity": 14,
-  "imageId": "product_brown_shoe_3",
-  "tag": "Featured"
-}, {
+},
+  {
+    "id": 16,
+    "item_type": "shoe",
+    "brand": "Magnanni",
+    "name": "Dexter Wingtip",
+    "color": "Grey",
+    "avg_review": 4.25,
+    "avg_monthly_sales": 12.8,
+    "size": 9.5,
+    "price": 72.51,
+    "quantity": 14,
+    "imageId": "product_brown_shoe_3",
+    "tag": "Featured"
+  },{
   "id": 17,
   "item_type": "shoe",
   "brand": "Gucci",
@@ -222,7 +223,7 @@
 }, {
   "id": 18,
   "item_type": "boot",
-  "brand": "Tod’s",
+  "brand": "Tod's",
   "name": "Stanley Wingtip Oxford",
   "color": "Grey",
   "avg_review": 4.48,
@@ -232,7 +233,7 @@
   "quantity": 19,
   "imageId": "product_brown_boots_1",
   "tag": null
-}, {
+},{
   "id": 19,
   "item_type": "shoe",
   "brand": "Church's",
@@ -518,4 +519,5 @@
   "quantity": 32,
   "imageId": "product_black_shoe_4",
   "tag": null
-}]
+}
+]
