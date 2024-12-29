@@ -6,6 +6,8 @@ public record Products(
         String brand,
         String name,
         String color,
+        float avg_review,
+        float avg_monthly_sales,
         float size,
         float price,
         int quantity,
