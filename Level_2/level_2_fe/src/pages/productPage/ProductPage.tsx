@@ -14,19 +14,37 @@ import {
     newArrivalsSorter,
     priceSorter
 } from "../../utils/sortingHelper.ts";
+import {Pagination, Stack} from "@mui/material";
+
+//TODO: Make into an external util fn
+const productsOnPage = (num: number, page: number, array: ProductType[]) => {
+    const start = page == 1 ? 0 : (page - 1) * num
+    const end = start + num;
+    return array.slice(start, end);
+}
+
+//TODO: Make into an external util fn
+const getPagesCount = (perPage: number, arraySize: number) => {
+    if (arraySize <= perPage) return 1;
+    if(arraySize % perPage >= 1) return (arraySize/perPage) + 1;
+    return arraySize/perPage;
+}
 
 export const ProductPage = () => {
+    const windowWidth = useWindowWidth();
+    const {products, size} = useProductsQuery();
+
     const [productListMode, setProductListMode] = useState<viewTypes>(viewTypes.G);
+    const [perPage, setPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const [filteredProducts, setFilteredProducts] = useState<ProductType[] | null>(null);
-
-    const windowWidth = useWindowWidth();
-    const {products} = useProductsQuery();
 
     useEffect(() => {
         if(windowWidth < SMALL_SCREEN_SIZE_BOUNDARY) setProductListMode(viewTypes.G);
     }, [windowWidth]);
 
+    //TODO: Make into a custom hook
     const handleSortProducts = (typeOfSort: sortType|string) => {
         switch(typeOfSort) {
             case "Price: Low to High": setFilteredProducts(priceSorter(products, "ascending")); break;
@@ -39,7 +57,6 @@ export const ProductPage = () => {
                 setFilteredProducts(products);
         }
     }
-
 
     const setViewGrid = () => setProductListMode(viewTypes.G);
     const setViewRow = () => setProductListMode(viewTypes.R);
@@ -57,17 +74,19 @@ export const ProductPage = () => {
             </div>
 
             <div className={styles.container}>
-                {(filteredProducts === null && products) ? featuredSorter(products).map((product: ProductType) => (
+                {(filteredProducts === null && products) ? productsOnPage(perPage, currentPage, featuredSorter(products)).map((product: ProductType) => (
                     <div key={product.id} style={{ display: "flex", justifyContent: "center", flex:`${productListMode == viewTypes.R ? "100%" : 1}`}}>
                         <ProductCard product={product} horizontal={productListMode == viewTypes.R}/>
                     </div>
-                )) : filteredProducts && filteredProducts.map((product: ProductType) => (
+                )) : filteredProducts && productsOnPage(perPage, currentPage, filteredProducts).map((product: ProductType) => (
                     <div key={product.id} style={{ display: "flex", justifyContent: "center", flex:`${productListMode == viewTypes.R ? "100%" : 1}`}}>
                         <ProductCard product={product} horizontal={productListMode == viewTypes.R}/>
                     </div>
                 ))}
-                hey
             </div>
+            <Stack spacing={2}>
+                <Pagination count={getPagesCount(perPage, size)} onChange={(_e, page) => setCurrentPage(page)} shape="rounded" />
+            </Stack>
         </div>
 
     )
