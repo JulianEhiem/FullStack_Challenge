@@ -15,7 +15,9 @@ import {
     priceSorter
 } from "../../utils/sortingHelper.ts";
 import {Pagination, Stack} from "@mui/material";
+import ResultsPerPageSelector from "./ResultsPerPageSelector.tsx";
 
+//TODO: Fix bug making "results per page" values larger than product length to crash page
 //TODO: Make into an external util fn
 const productsOnPage = (num: number, page: number, array: ProductType[]) => {
     const start = page == 1 ? 0 : (page - 1) * num
@@ -24,18 +26,20 @@ const productsOnPage = (num: number, page: number, array: ProductType[]) => {
 }
 
 //TODO: Make into an external util fn
-const getPagesCount = (perPage: number, arraySize: number) => {
-    if (arraySize <= perPage) return 1;
-    if(arraySize % perPage >= 1) return (arraySize/perPage) + 1;
-    return arraySize/perPage;
-}
+// const getPagesCount = (perPage: number, arraySize: number): number => {
+//     if (arraySize <= perPage) return 1;
+//     if(arraySize % perPage >= 1) return (arraySize/perPage) + 1;
+//     return arraySize/perPage;
+// }
 
 export const ProductPage = () => {
     const windowWidth = useWindowWidth();
     const {products, size} = useProductsQuery();
+    const resultsPerPageOptions = [10,20,50,100];
 
     const [productListMode, setProductListMode] = useState<viewTypes>(viewTypes.G);
     const [perPage, setPerPage] = useState(10);
+    // const [pageCount, setPageCount] = useState(getPagesCount(perPage, size));
     const [currentPage, setCurrentPage] = useState(1);
 
     const [filteredProducts, setFilteredProducts] = useState<ProductType[] | null>(null);
@@ -84,10 +88,11 @@ export const ProductPage = () => {
                     </div>
                 ))}
             </div>
+            {/*<ResultsPerPageSelector />*/}
+            <ResultsPerPageSelector initial={perPage} handleChange={(e) => setPerPage(e.target.value)} options={resultsPerPageOptions} />
             <Stack spacing={2}>
-                <Pagination count={getPagesCount(perPage, size)} onChange={(_e, page) => setCurrentPage(page)} shape="rounded" />
+                <Pagination count={Math.ceil(size / perPage) || 1} onChange={(_e, page) => setCurrentPage(page)} shape="rounded" />
             </Stack>
         </div>
-
     )
 }

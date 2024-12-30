@@ -9,7 +9,7 @@ export const useProductsQuery = () => {
         refetchOnWindowFocus: false,
         retry: true
     });
-    const size = data.length;
+    const size = data?.length;
     return {products: data, isLoading, size};
 }
 
