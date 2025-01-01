@@ -16,7 +16,7 @@ const ResultsPerPageSelector = ({initial, handleChange, options}:resultsPerPageP
                     <Select
                         value={initial}
                         onChange={handleChange}
-                        sx={{ width: '70px'}}
+                        sx={{ width: '75px'}}
                         size="small"
                     >
                         {options.map(option => (

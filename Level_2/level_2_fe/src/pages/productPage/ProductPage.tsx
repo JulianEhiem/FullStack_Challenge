@@ -12,13 +12,7 @@ import {
 } from "../../utils/sortingHelper.ts";
 import {Pagination, Stack} from "@mui/material";
 import ResultsPerPageSelector from "./ResultsPerPageSelector.tsx";
-
-//TODO: Make into an external util fn
-const productsOnPage = (num: number, page: number, array: ProductType[]) => {
-    const start = page == 1 ? 0 : (page - 1) * num
-    const end = start + num;
-    return array.slice(start, end);
-}
+import {paginate} from "../../utils/paginationHelper.ts";
 
 export const ProductPage = () => {
     const windowWidth = useWindowWidth();
@@ -55,7 +49,7 @@ export const ProductPage = () => {
             </div>
 
             <div className={styles.container}>
-                {(filteredProducts === null && products) ? productsOnPage(perPage, currentPage, featuredSorter(products)).map((product: ProductType) => (
+                {(filteredProducts === null && products) ? paginate(perPage, currentPage, featuredSorter(products)).map((product: ProductType) => (
                     <div key={product.id} style={{
                         display: "flex",
                         justifyContent: "center",
@@ -63,7 +57,7 @@ export const ProductPage = () => {
                     }}>
                         <ProductCard product={product} horizontal={productListMode == viewTypes.R}/>
                     </div>
-                )) : filteredProducts && productsOnPage(perPage, currentPage, filteredProducts).map((product: ProductType) => (
+                )) : filteredProducts && paginate(perPage, currentPage, filteredProducts).map((product: ProductType) => (
                     <div key={product.id} style={{
                         display: "flex",
                         justifyContent: "center",
