@@ -8,29 +8,17 @@ import {SMALL_SCREEN_SIZE_BOUNDARY} from "../../utils/constants.ts";
 import useWindowWidth from "../../hooks/useWindowWidth.ts";
 import SortFilter from "./SortFilter.tsx";
 import {
-    bestSellersSorter,
-    customerReviewSorter,
-    featuredSorter,
-    newArrivalsSorter,
-    priceSorter
+    featuredSorter, sortingHandler
 } from "../../utils/sortingHelper.ts";
 import {Pagination, Stack} from "@mui/material";
 import ResultsPerPageSelector from "./ResultsPerPageSelector.tsx";
 
-//TODO: Fix bug making "results per page" values larger than product length to crash page
 //TODO: Make into an external util fn
 const productsOnPage = (num: number, page: number, array: ProductType[]) => {
     const start = page == 1 ? 0 : (page - 1) * num
     const end = start + num;
     return array.slice(start, end);
 }
-
-//TODO: Make into an external util fn
-// const getPagesCount = (perPage: number, arraySize: number): number => {
-//     if (arraySize <= perPage) return 1;
-//     if(arraySize % perPage >= 1) return (arraySize/perPage) + 1;
-//     return arraySize/perPage;
-// }
 
 export const ProductPage = () => {
     const windowWidth = useWindowWidth();
@@ -39,7 +27,6 @@ export const ProductPage = () => {
 
     const [productListMode, setProductListMode] = useState<viewTypes>(viewTypes.G);
     const [perPage, setPerPage] = useState(10);
-    // const [pageCount, setPageCount] = useState(getPagesCount(perPage, size));
     const [currentPage, setCurrentPage] = useState(1);
 
     const [filteredProducts, setFilteredProducts] = useState<ProductType[] | null>(null);
@@ -48,18 +35,8 @@ export const ProductPage = () => {
         if(windowWidth < SMALL_SCREEN_SIZE_BOUNDARY) setProductListMode(viewTypes.G);
     }, [windowWidth]);
 
-    //TODO: Make into a custom hook
     const handleSortProducts = (typeOfSort: sortType|string) => {
-        switch(typeOfSort) {
-            case "Price: Low to High": setFilteredProducts(priceSorter(products, "ascending")); break;
-            case "Price: High to Low":setFilteredProducts(priceSorter(products, "descending"));break;
-            case "Customer Review":setFilteredProducts(customerReviewSorter(products)); break;
-            case "Newest Arrivals":setFilteredProducts(newArrivalsSorter(products)); break;
-            case "Best Sellers":setFilteredProducts(bestSellersSorter(products)); break;
-            case "Featured":setFilteredProducts(featuredSorter(products)); break;
-            default:
-                setFilteredProducts(products);
-        }
+        setFilteredProducts(sortingHandler(typeOfSort, products))
     }
 
     const setViewGrid = () => setProductListMode(viewTypes.G);
@@ -79,20 +56,31 @@ export const ProductPage = () => {
 
             <div className={styles.container}>
                 {(filteredProducts === null && products) ? productsOnPage(perPage, currentPage, featuredSorter(products)).map((product: ProductType) => (
-                    <div key={product.id} style={{ display: "flex", justifyContent: "center", flex:`${productListMode == viewTypes.R ? "100%" : 1}`}}>
+                    <div key={product.id} style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        flex: `${productListMode == viewTypes.R ? "100%" : 1}`
+                    }}>
                         <ProductCard product={product} horizontal={productListMode == viewTypes.R}/>
                     </div>
                 )) : filteredProducts && productsOnPage(perPage, currentPage, filteredProducts).map((product: ProductType) => (
-                    <div key={product.id} style={{ display: "flex", justifyContent: "center", flex:`${productListMode == viewTypes.R ? "100%" : 1}`}}>
+                    <div key={product.id} style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        flex: `${productListMode == viewTypes.R ? "100%" : 1}`
+                    }}>
                         <ProductCard product={product} horizontal={productListMode == viewTypes.R}/>
                     </div>
                 ))}
             </div>
-            {/*<ResultsPerPageSelector />*/}
-            <ResultsPerPageSelector initial={perPage} handleChange={(e) => setPerPage(e.target.value)} options={resultsPerPageOptions} />
-            <Stack spacing={2}>
-                <Pagination count={Math.ceil(size / perPage) || 1} onChange={(_e, page) => setCurrentPage(page)} shape="rounded" />
-            </Stack>
+            <div style={{display: "flex", justifyContent: "space-between", padding: "0 1rem 2rem"}}>
+                <ResultsPerPageSelector initial={perPage + ''} handleChange={(e) => setPerPage(Number(e.target.value))}
+                                        options={resultsPerPageOptions}/>
+                <Stack spacing={2}>
+                    <Pagination count={Math.ceil(size / perPage) || 1} onChange={(_e, page) => setCurrentPage(page)}
+                                shape="rounded" size="large"/>
+                </Stack>
+            </div>
         </div>
     )
 }

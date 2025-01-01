@@ -1,29 +1,30 @@
-import styles from './ResultsPerPageSelector.module.css';
-import {Box, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
-
+import {FormControl, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 
 interface resultsPerPagePropType {
-    initial: number;
-    handleChange: () => void;
+    initial: string;
+    handleChange: (e:SelectChangeEvent) => void;
     options: number[];
 }
 
-const ResultsPerPageSelector = ({initial, handleChange, options}) => {
-
+const ResultsPerPageSelector = ({initial, handleChange, options}:resultsPerPagePropType) => {
     return (
-        <>
-            <Box sx={{ minWidth: 120 }}>
+        <div>
+            <FormControl sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "1rem" }} size="small" >
+                    <div style={{color: "#757883"}}>
+                        Show result:
+                    </div>
                     <Select
-                        id="demo-simple-select"
                         value={initial}
                         onChange={handleChange}
+                        sx={{ width: '70px'}}
+                        size="small"
                     >
                         {options.map(option => (
                             <MenuItem key={option} value={option}>{option + ''}</MenuItem>
                         ))}
                     </Select>
-            </Box>
-        </>
+            </FormControl>
+        </div>
     )
 }
 
