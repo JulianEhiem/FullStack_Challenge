@@ -1,0 +1,25 @@
+.pill{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2px 10px 2px 25px;
+    background-color: #42c3d0;
+    width: fit-content;
+    border-radius: 5px;
+    color: #fff;
+    position: relative;
+}
+.pill > p::before {
+    position: absolute;
+    top: 40%;
+    left: 9px;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 6px;
+    height: 6px;
+    content:'';
+}
+.pill > p {
+    margin: 3px 0;
+    font-size: 12px;
+}

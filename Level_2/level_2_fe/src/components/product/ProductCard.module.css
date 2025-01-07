@@ -1,0 +1,107 @@
+.card{
+    width: 270px;
+}
+.productImage{
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    background-color: #e8dcd2;
+    position: relative;
+    overflow: hidden;
+
+}
+.productImage > img {
+    width: 270px;
+    min-height: 300px;
+    border-radius: 16px;
+}
+.productTag{
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.productDescription{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 14px 2px;
+}
+.productBrand{
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    color:#939aa8;
+}
+.productName{
+    margin: 0;
+    font-size: 20px;
+    font-kerning: none;
+}
+.productPrice{
+    margin: 0;
+    font-size: 20px;
+    font-weight: lighter;
+    color: #42c3d0;
+}
+.productStock{
+    margin: 0;
+    font-size: 14px;
+    font-weight: lighter;
+    color: #fa7070;
+}
+.descriptionRows{
+    display: flex;
+    justify-content: space-between;
+    max-height: 45px;
+}
+
+/*=============== horizontal card ======================*/
+.horizontalCard{
+    display: flex;
+    width: 550px;
+    height: fit-content;
+    justify-content: space-between;
+    gap: 14px;
+}
+.horizontalProductImage{
+    width: 320px;
+    height: 320px;
+    border-radius: 16px;
+    background-color: #e8dcd2;
+    position: relative;
+    overflow: hidden;
+}
+.horizontalProductImage > img {
+    width: 320px;
+    border-radius: 16px;
+}
+.horizontalProductTag{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+.emptyBox{
+    content: '';
+    background-color: rgba(66, 195, 208, 0.12);
+    border-radius: 5px;
+    width: 90px;
+    height: 31px;
+}
+.horizontalProductDescription{
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    gap: 24px;
+}
+.horizontalProductStock{
+    justify-self: flex-end;
+    margin: 0;
+    font-size: 14px;
+    font-weight: lighter;
+    color: #fa7070;
+}
+.horizontalProductName{
+    margin: 0;
+    font-size: 28px;
+}
