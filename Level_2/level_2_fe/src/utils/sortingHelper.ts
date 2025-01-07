@@ -1,4 +1,4 @@
-import {ProductType} from "../types.ts";
+import {ProductType, sortType} from "../types.ts";
 import {BEST_SELLER_SALES_THRESHOLD} from "./constants.ts";
 
 export const featuredSorter = (products: ProductType[]) => {
@@ -44,4 +44,17 @@ export const priceSorter = (products: ProductType[], type: "ascending"|"descendi
     }
     else productsCopy.sort((a:ProductType, b:ProductType) => b.price - a.price);
     return productsCopy;
+}
+
+export const sortingHandler = (typeOfSort: sortType | string, products: ProductType[]):ProductType[] => {
+    const productsCopy = [...products];
+    const sorters: Record<string, ProductType[]>= {
+         "Price: Low to High": priceSorter(productsCopy, "ascending"),
+         "Price: High to Low":priceSorter(productsCopy, "descending"),
+         "Customer Review":customerReviewSorter(productsCopy),
+         "Newest Arrivals":newArrivalsSorter(productsCopy),
+         "Best Sellers":bestSellersSorter(productsCopy),
+         "Featured":featuredSorter(productsCopy)
+    }
+    return  (sorters[typeOfSort] || sorters['Featured']);
 }

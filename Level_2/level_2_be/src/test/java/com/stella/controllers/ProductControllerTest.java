@@ -46,7 +46,7 @@ class ProductControllerTest {
 
     @Test
     @DisplayName("Should generate the expected response when given a path to a response file")
-    void generateResponse() {
+    void generateResponse() throws IOException {
         String resolvedPath = path.toString();
         assertEquals(message, ProductController.generateResponseFrom(resolvedPath));
     }

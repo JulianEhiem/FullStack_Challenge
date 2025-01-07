@@ -12,9 +12,8 @@ import java.util.List;
 
 public class ProductController implements HttpHandler {
 
-    public static String path = "src/main/resources/mockData3.json";
-//    public static String path = "src/main/resources/mockData2.json";
-//    public static String path = "src/main/resources/mockData.json";
+    public static String path = "src/main/resources/MOCK_DATA.json";
+
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
